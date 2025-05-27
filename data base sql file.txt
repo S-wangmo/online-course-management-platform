@@ -1,0 +1,230 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 27, 2025 at 04:42 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `student_system`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assignments`
+--
+
+CREATE TABLE `assignments` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) DEFAULT NULL,
+  `course` varchar(1000) NOT NULL,
+  `file_name` varchar(255) DEFAULT NULL,
+  `submission_date` datetime DEFAULT NULL,
+  `feedback` text DEFAULT NULL,
+  `grade` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `assignments`
+--
+
+INSERT INTO `assignments` (`id`, `student_id`, `course`, `file_name`, `submission_date`, `feedback`, `grade`) VALUES
+(6, 4, 'Web Development', 'back-up code.txt', '2025-05-15 05:44:06', 'Poor programming style', '59'),
+(7, 5, 'Software Engineering', 'tripadvisor_hotel_reviews.csv', '2025-05-15 06:13:24', 'Wrong work', '0'),
+(8, 4, 'Cybersecurity Fundamentals', 'tripadvisor_hotel_reviews.csv', '2025-05-15 06:18:33', 'Useless work', '0'),
+(9, 4, 'Database Systems', 'tripadvisor_hotel_reviews.csv', '2025-05-15 06:27:37', NULL, NULL),
+(10, 4, 'Web Development', 'index.php', '2025-05-15 08:43:51', NULL, NULL),
+(11, 7, 'Web Development', 'back-up code.txt', '2025-05-27 04:44:31', NULL, NULL),
+(12, 7, 'Database Systems', 'back-up code.txt', '2025-05-27 04:52:11', 'Good work', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `id` int(11) NOT NULL,
+  `course_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `course_name`) VALUES
+(1, 'Web Development'),
+(2, 'Database Systems'),
+(3, 'Cybersecurity Fundamentals'),
+(4, 'Software Engineering');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `grades`
+--
+
+CREATE TABLE `grades` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `course` varchar(100) DEFAULT NULL,
+  `grade` varchar(10) DEFAULT NULL,
+  `feedback` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lecturers`
+--
+
+CREATE TABLE `lecturers` (
+  `id` int(11) NOT NULL,
+  `Lect_ID` varchar(255) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `lecturers`
+--
+
+INSERT INTO `lecturers` (`id`, `Lect_ID`, `name`, `email`, `password`) VALUES
+(1, '007', 'John Wachira', 'mwanikijohn577@yahoo.com', '$2y$10$ckAp1J6OCMt51C.zj/c58./beszhhbJR.52V5Kmf0mtuo89N3iBE.'),
+(2, '010123', 'Lilian', 'james1@gmail.com', '$2y$10$0M/BemrfFM1Uqx5V1j110u/m.dADBlOsWeDSFuoOz/qq/m3kjaeq.'),
+(3, '08765', 'Jamestr', 'jam@gmail.com', '$2y$10$LO/afZJrzGKgb32aLiBqP.uWkgjID8QF0TnVLEVxV3D2CZ6tUozCe');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students`
+--
+
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(255) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `course` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `student_id`, `name`, `email`, `password`, `course`) VALUES
+(1, '', 'John Wachira', 'mwanikijohn57@yahoo.com', '$2y$10$UGei4k2G2WFodd.Tb0jlB.3dVzT7lmZRJ8mfhM4vCKhJ7iCFFlIUG', 'Computer Science'),
+(2, '', 'John Mwaniki', 'mwaniki.jkuat@gmail.com', '$2y$10$rwYqAsHmuDPECGzDet35NeBWuwZKClmka68Iqo59IiyAm4IT/ciWS', 'Computer Science'),
+(3, '0987654321', 'jeff', 'jeef@gmail.com', '$2y$10$7MuD27HXUozWAhk3lKFCxuQmMQvVejZkytMCiZdidLoJ1tTxz5Fji', 'Business Management'),
+(4, '09876543219', 'John M Wachira', 'mwanikijohn577@yahoo.com', '$2y$10$iWgiru6aAZqimjvs3sml1Ocj1xls9ZM2ealubBSTmEd2wc5oF.FTa', 'Engineering'),
+(5, '12345678', 'Susan', 'susan@gmail.com', '$2y$10$cfJ/ybSW87IiVq8eiPfloeHAimnQKJoSMZG0zSE6Sv/vC8Fb6DF8a', 'Arts'),
+(7, '234590888', 'James ', 'james@gmail.com', '$2y$10$u0Zj23sj2NnzryWxImYmOuzqYqLLE2sN3JQlDMbdlfujhzeNubOZC', 'Computer Science'),
+(8, '456982', 'Susan', 'susan12@gmail.com', '$2y$10$Wv41SkZKiI5IETYVYzX33e083k2QBKPLZPVVk932HdDoXZKXx.1R2', 'Engineering');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `assignments`
+--
+ALTER TABLE `assignments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `grades`
+--
+ALTER TABLE `grades`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `lecturers`
+--
+ALTER TABLE `lecturers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `assignments`
+--
+ALTER TABLE `assignments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `grades`
+--
+ALTER TABLE `grades`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `lecturers`
+--
+ALTER TABLE `lecturers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `assignments`
+--
+ALTER TABLE `assignments`
+  ADD CONSTRAINT `assignments_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`);
+
+--
+-- Constraints for table `grades`
+--
+ALTER TABLE `grades`
+  ADD CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
